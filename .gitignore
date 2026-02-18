@@ -1,0 +1,30 @@
+out
+dist
+node_modules
+.vscode-test/
+*.vsix
+
+# OS files
+.DS_Store
+Thumbs.db
+.fseventsd
+.Spotlight-V100
+.Trashes
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Workspace settings (ignore private but keep recommended)
+.vscode/*
+!.vscode/extensions.json
+!.vscode/launch.json
+!.vscode/tasks.json
+
+# TypeScript
+*.tsbuildinfo
+
+# Project specific
+vsc-extension-quickstart.md

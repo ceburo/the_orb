@@ -1,0 +1,231 @@
+body {
+    background-color: transparent;
+    color: var(--vscode-foreground);
+    font-family: var(--vscode-font-family);
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    padding: 10px;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+.stats {
+    flex: 0 0 auto;
+    font-size: 1.2em;
+    margin-bottom: 5px;
+    font-weight: bold;
+    text-align: center;
+    z-index: 10;
+}
+
+.multiplier-container {
+    flex: 0 0 auto;
+    font-size: 0.9em;
+    color: var(--vscode-textPreformat-foreground, #ce9178);
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    text-align: center;
+    z-index: 10;
+}
+
+#reward-icon {
+    display: inline-block;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#orb-container {
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 200px;
+    overflow: visible;
+}
+
+.orb-wrapper {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: orbit var(--orbit-duration, 10s) linear infinite;
+    transform-origin: center;
+}
+
+.orb {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: hsl(200, 100%, 80%);
+    box-shadow: 0 0 20px 0 hsl(200, 100%, 50%);
+    transition: width 0.3s, height 0.3s, background-color 0.5s, box-shadow 0.5s;
+    flex-shrink: 0;
+}
+
+.orb.pulse {
+    animation: pulse-animation 0.3s ease-out;
+}
+
+.orb.mitosis-flash {
+    animation: flash-animation 1s ease-in-out;
+}
+
+@keyframes orbit {
+    from {
+        transform: rotate(var(--orbit-angle, 0deg)) translateX(var(--orbit-radius, 50px)) rotate(calc(-1 * var(--orbit-angle, 0deg)));
+    }
+
+    to {
+        transform: rotate(calc(var(--orbit-angle, 0deg) + 360deg)) translateX(var(--orbit-radius, 50px)) rotate(calc(-1 * (var(--orbit-angle, 0deg) + 360deg)));
+    }
+}
+
+@keyframes pulse-animation {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes pulse-animation {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes flash-animation {
+
+    0%,
+    100% {
+        filter: brightness(1);
+    }
+
+    50% {
+        filter: brightness(2) blur(5px);
+    }
+}
+
+.message {
+    flex: 0 0 auto;
+    margin-top: auto;
+    margin-bottom: 10px;
+    font-size: 0.9em;
+    opacity: 0.8;
+    min-height: 1.2em;
+    transition: color 0.3s;
+    text-align: center;
+    z-index: 10;
+}
+
+.version-display {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    font-size: 0.7em;
+    color: var(--vscode-descriptionForeground);
+    font-family: var(--vscode-font-monospace);
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.settings-container {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 100;
+}
+
+.icon-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2em;
+    padding: 2px 5px;
+    opacity: 0.5;
+    transition: opacity 0.2s;
+    outline: none;
+}
+
+.icon-button:hover {
+    opacity: 1;
+}
+
+.settings-panel {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: var(--vscode-sideBar-background);
+    border: 1px solid var(--vscode-panel-border);
+    border-radius: 4px;
+    padding: 10px;
+    min-width: 150px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    pointer-events: auto;
+}
+
+.settings-panel h3 {
+    margin-top: 0;
+    font-size: 1em;
+    border-bottom: 1px solid var(--vscode-panel-border);
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+.danger-button {
+    background-color: var(--vscode-statusBarItem-errorBackground, #c72e2e);
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 2px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 0.9em;
+}
+
+.danger-button:hover {
+    background-color: #e53935;
+}
+
+.hidden {
+    display: none;
+}

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mia - The Orb for VS Code</title>
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --text-color: #c9d1d9;
+            --accent-color: #58a6ff;
+            --orb-color-1: #8e44ad;
+            --orb-color-2: #3498db;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            text-align: center;
+            padding: 80px 20px;
+            background: radial-gradient(circle at center, #1f2428 0%, #0d1117 100%);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, var(--orb-color-1), var(--orb-color-2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: #fff;
+            padding: 12px 30px;
+            font-size: 1.2rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            background-color: #0366d6;
+        }
+
+        .orb-demo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0) 20%),
+                linear-gradient(135deg, var(--orb-color-1), var(--orb-color-2));
+            box-shadow: 0 0 40px rgba(142, 68, 173, 0.6);
+            margin: 40px auto;
+            animation: float 6s ease-in-out infinite, pulse 3s ease-in-out infinite;
+        }
+
+        .features {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-card {
+            background-color: #161b22;
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #30363d;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            margin-top: 0;
+            color: #fff;
+        }
+
+        .mitosis-section {
+            background-color: #161b22;
+            text-align: center;
+            padding: 80px 20px;
+            margin-top: 40px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            font-size: 0.9rem;
+            opacity: 0.6;
+            background-color: #090c10;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1) translateY(0px);
+                box-shadow: 0 0 40px rgba(142, 68, 173, 0.6);
+            }
+
+            50% {
+                transform: scale(1.05) translateY(-20px);
+                box-shadow: 0 0 60px rgba(142, 68, 173, 0.8);
+            }
+
+            100% {
+                transform: scale(1) translateY(0px);
+                box-shadow: 0 0 40px rgba(142, 68, 173, 0.6);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="orb-demo"></div>
+        <h1>Mia - The Orb</h1>
+        <p class="hero-subtitle">Make every keystroke count. Turn your daily coding routine into a visual RPG.</p>
+        <a href="https://marketplace.visualstudio.com/items?itemName=NicolasBrouillet.mia" class="cta-button">Download
+            for VS Code</a>
+    </header>
+
+    <section class="features">
+        <div class="feature-card">
+            <span class="feature-icon">⌨️</span>
+            <h2>Code to Grow</h2>
+            <p>Every character you type feeds the orb. Watch it grow, evolve, and pulse with energy right in your
+                activity bar.</p>
+        </div>
+        <div class="feature-card">
+            <span class="feature-icon">🚀</span>
+            <h2>Git Multiplier</h2>
+            <p>Consistency is rewarded. Every Git commit boosts your XP multiplier by +0.2x. Chain your commits to reach
+                maximum velocity!</p>
+        </div>
+        <div class="feature-card">
+            <span class="feature-icon">⚡</span>
+            <h2>Level Up</h2>
+            <p>Gain logic-based XP (comments are ignored!). Reach new levels and unlock visual upgrades as your skills
+                improve.</p>
+        </div>
+    </section>
+
+    <div class="mitosis-section">
+        <h2>🧬 Endgame: Mitosis</h2>
+        <p style="max-width: 600px; margin: 20px auto;">
+            Reach the legendary <strong>x5.0 multiplier</strong> and trigger the unstable energy event.
+            Split your orb into multiple entities and accelerate your progression exponentially. How many orbs can you
+            handle?
+        </p>
+    </div>
+
+    <footer>
+        <p>Made with ❤️ by Nicolas Brouillet.</p>
+        <p>Not affiliated with Microsoft or VS Code.</p>
+    </footer>
+
+</body>
+
+</html>
