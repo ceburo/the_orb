@@ -28,3 +28,9 @@ yarn-error.log*
 
 # Project specific
 vsc-extension-quickstart.md
+build_output.txt
+test-file.txt
+
+# VitePress
+docs/.vitepress/dist
+docs/.vitepress/cache
