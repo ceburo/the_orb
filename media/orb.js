@@ -63,6 +63,9 @@
             case 'updateMultiplier':
                 updateState(message.value, orbCount);
                 break;
+            case 'shake':
+                shakeOrbs();
+                break;
             case 'mitosisEffect':
                 showMitosisAnimation();
                 break;
@@ -282,6 +285,15 @@
             orb.classList.remove('pulse');
             orb.getBoundingClientRect();
             orb.classList.add('pulse');
+        });
+    }
+
+    function shakeOrbs() {
+        const orbs = document.querySelectorAll('.orb');
+        orbs.forEach(orb => {
+            orb.classList.remove('shaking');
+            orb.getBoundingClientRect();
+            orb.classList.add('shaking');
         });
     }
 

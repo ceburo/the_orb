@@ -91,8 +91,44 @@ body {
     animation: pulse-animation 0.3s ease-out;
 }
 
+.orb.shaking {
+    animation: shake-animation 0.12s ease-in-out;
+}
+
 .orb.mitosis-flash {
     animation: flash-animation 1s ease-in-out;
+}
+
+@keyframes shake-animation {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    25% {
+        transform: translate(-1.5px, 0.5px) scale(1.05);
+    }
+
+    50% {
+        transform: translate(1px, -1px) scale(1.08);
+    }
+
+    75% {
+        transform: translate(-0.5px, 1px) scale(1.05);
+    }
+}
+
+@keyframes flash-animation {
+
+    0%,
+    100% {
+        filter: brightness(1);
+    }
+
+    50% {
+        filter: brightness(2) blur(5px);
+    }
 }
 
 @keyframes orbit {
@@ -116,32 +152,6 @@ body {
 
     100% {
         transform: scale(1);
-    }
-}
-
-@keyframes pulse-animation {
-    0% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.1);
-    }
-
-    100% {
-        transform: scale(1);
-    }
-}
-
-@keyframes flash-animation {
-
-    0%,
-    100% {
-        filter: brightness(1);
-    }
-
-    50% {
-        filter: brightness(2) blur(5px);
     }
 }
 

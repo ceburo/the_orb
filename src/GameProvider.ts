@@ -85,6 +85,12 @@ export class GameProvider implements vscode.WebviewViewProvider {
         }
     }
 
+    public triggerShake() {
+        if (this._view) {
+            this._view.webview.postMessage({ type: 'shake' });
+        }
+    }
+
     public updateMultiplier(multiplier: number) {
         this.updateState(multiplier, 1);
     }

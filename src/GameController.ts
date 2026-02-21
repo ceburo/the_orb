@@ -64,6 +64,9 @@ export class GameController implements vscode.Disposable {
 
         console.debug(`Mia: Processing ${event.contentChanges.length} changes`);
 
+        // Trigger visual feedback for typing
+        this._provider.triggerShake();
+
         const document = event.document;
         event.contentChanges.forEach(change => {
             const text = change.text.trim();
