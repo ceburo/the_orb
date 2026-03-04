@@ -21,8 +21,8 @@ export class GameController implements vscode.Disposable {
         this._disposables.push(
             this._provider.onDidSaveState(state => {
                 console.log(`Mia: Saving State -> XP: ${state.xp}, Level: ${state.level}`);
-                this._context.globalState.update('mia.xp', state.xp);
-                this._context.globalState.update('mia.level', state.level);
+                this._context.globalState.update('mia.updatedXp', state.xp);
+                this._context.globalState.update('mia.updatedLevel', state.level);
             }),
             this._provider.onDidResolveWebview(() => {
                 this._initializeState();
@@ -35,17 +35,17 @@ export class GameController implements vscode.Disposable {
     }
 
     private _initializeState() {
-        const storedMultiplier = this._context.globalState.get<number>('mia.multiplier', 1);
+        const storedMultiplier = this._context.globalState.get<number>('mia.updatedMultiplier', 1);
         let currentMultiplier = typeof storedMultiplier === 'number' ? storedMultiplier : Number(storedMultiplier) || 1;
         currentMultiplier = Math.round(currentMultiplier * 10) / 10;
 
-        const storedOrbCount = this._context.globalState.get<number>('mia.orbCount', 1);
+        const storedOrbCount = this._context.globalState.get<number>('mia.updatedOrbCount', 1);
         const orbCount = typeof storedOrbCount === 'number' ? storedOrbCount : Number(storedOrbCount) || 1;
 
-        const storedXp = this._context.globalState.get<number>('mia.xp', 0);
+        const storedXp = this._context.globalState.get<number>('mia.updatedXp', 0);
         const xp = Math.max(0, typeof storedXp === 'number' ? storedXp : Number(storedXp) || 0);
 
-        const storedLevel = this._context.globalState.get<number>('mia.level', 1);
+        const storedLevel = this._context.globalState.get<number>('mia.updatedLevel', 1);
         const level = Math.max(1, typeof storedLevel === 'number' ? storedLevel : Number(storedLevel) || 1);
 
         console.log(`Mia: Initializing State -> XP: ${xp}, Level: ${level}, Multiplier: ${currentMultiplier}, Orbs: ${orbCount}`);
@@ -150,13 +150,13 @@ export class GameController implements vscode.Disposable {
     }
 
     private _handleCommit() {
-        const storedMultiplier = this._context.globalState.get<number>('mia.multiplier', 1);
+        const storedMultiplier = this._context.globalState.get<number>('mia.updatedMultiplier', 1);
         let multiplier = typeof storedMultiplier === 'number' ? storedMultiplier : Number(storedMultiplier) || 1;
 
-        const storedOrbCount = this._context.globalState.get<number>('mia.orbCount', 1);
+        const storedOrbCount = this._context.globalState.get<number>('mia.updatedOrbCount', 1);
         let orbCount = typeof storedOrbCount === 'number' ? storedOrbCount : Number(storedOrbCount) || 1;
 
-        const storedXp = this._context.globalState.get<number>('mia.xp', 0);
+        const storedXp = this._context.globalState.get<number>('mia.updatedXp', 0);
         const xp = typeof storedXp === 'number' ? storedXp : Number(storedXp) || 0;
 
         console.log(`Mia: Commit Detected -> Current Multiplier: ${multiplier}, XP: ${xp}, Orbs: ${orbCount}`);
@@ -168,7 +168,7 @@ export class GameController implements vscode.Disposable {
 
             console.log(`Mia: New Multiplier -> ${multiplier}`);
 
-            this._context.globalState.update('mia.multiplier', multiplier);
+            this._context.globalState.update('mia.updatedMultiplier', multiplier);
             this._provider.updateState(multiplier, orbCount);
 
             vscode.window.setStatusBarMessage(`Mia: Multiplier increased to x${multiplier.toFixed(1)}! 🚀`, 5000);
@@ -178,19 +178,18 @@ export class GameController implements vscode.Disposable {
     private _triggerMitosis() {
         const newMultiplier = 1;
 
-        const storedOrbCount = this._context.globalState.get<number>('mia.orbCount', 1);
+        const storedOrbCount = this._context.globalState.get<number>('mia.updatedOrbCount', 1);
         const orbCount = typeof storedOrbCount === 'number' ? storedOrbCount : Number(storedOrbCount) || 1;
         const newOrbCount = orbCount * 2;
 
         console.log(`Mia: Triggering Mitosis! Old Orbs: ${orbCount}, New Orbs: ${newOrbCount}`);
 
-        const newXp = 0;
 
-        this._context.globalState.update('mia.multiplier', newMultiplier);
-        this._context.globalState.update('mia.orbCount', newOrbCount);
-        this._context.globalState.update('mia.xp', newXp);
+        this._context.globalState.update('mia.updatedMultiplier', newMultiplier);
+        this._context.globalState.update('mia.updatedOrbCount', newOrbCount);
+        this._context.globalState.update('mia.updatedXp', newXp);
 
-        const storedLevel = this._context.globalState.get<number>('mia.level', 1);
+        const storedLevel = this._context.globalState.get<number>('mia.updatedLevel', 1);
         const level = typeof storedLevel === 'number' ? storedLevel : Number(storedLevel) || 1;
 
         this._provider.updateState(newMultiplier, newOrbCount, newXp, level);
@@ -211,10 +210,10 @@ export class GameController implements vscode.Disposable {
 
         if (result === 'Reset Progress') {
             console.log('Mia: Resetting progress...');
-            this._context.globalState.update('mia.xp', 0);
-            this._context.globalState.update('mia.level', 1);
-            this._context.globalState.update('mia.multiplier', 1);
-            this._context.globalState.update('mia.orbCount', 1);
+            this._context.globalState.update('mia.updatedXp', 0);
+            this._context.globalState.update('mia.updatedLevel', 1);
+            this._context.globalState.update('mia.updatedMultiplier', 1);
+            this._context.globalState.update('mia.updatedOrbCount', 1);
 
             this._initializeState();
             vscode.window.showInformationMessage('Mia: Your progress has been reset.');
