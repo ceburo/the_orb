@@ -161,7 +161,7 @@ export class GameController implements vscode.Disposable {
 
         console.log(`Mia: Commit Detected -> Current Multiplier: ${multiplier}, XP: ${xp}, Orbs: ${orbCount}`);
 
-        if (GameLogic.shouldTriggerMitosis(multiplier)) {
+        if (GameLogic.shouldTriggerMitosis(multiplier / (1 + Math.log2(storedOrbCount) * 0.2)) {
             this._triggerMitosis();
         } else {
             multiplier = GameLogic.incrementMultiplier(multiplier);
