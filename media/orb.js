@@ -86,7 +86,7 @@
         if (!orbContainer) return;
 
         const currentOrbs = orbContainer.querySelectorAll('.orb-wrapper');
-        const diff = orbCount - currentOrbs.length;
+        const diff = Math.min(100, orbCount) - Math.min(100, currentOrbs.length);
 
         if (diff > 0) {
             for (let i = 0; i < diff; i++) {
